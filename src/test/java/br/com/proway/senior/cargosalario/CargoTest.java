@@ -10,51 +10,48 @@ import org.junit.jupiter.api.Test;
 class CargoTest {
 
 	@Test
-	void testCadastrarCargo() {
+	void testCadastrarCargoConstrutor() {
 		Cargo cargo = new Cargo(1, "Gerente", 4, "Supervisor", 500.40, LocalDateTime.now(), LocalDateTime.now(),
 				"5842320-32", "21314", 55, "Superior Completo", "12 meses", "Desenvolvedor", "nenhuma", 1);
-
 		cargo.setCbo94("1651515");
-
 		assertEquals(1, cargo.getIdCargo());
 
 	}
-	
+
 	@Test
-	public void testCadastrarCargo2() {
-		Cargo cargo = new Cargo(1, "desenvolvedor");
-		ArrayList<Cargo> listaCargo = new ArrayList<Cargo>();	
-		listaCargo.add(cargo);
+	public void testCadastrarCargoRetornoNaoVazio() {
+		ArrayList<Cargo> listaCargo = new ArrayList<Cargo>();
+		CargoService cs = new CargoService();
+		assertTrue(!cs.cadastrarCargo(listaCargo, 2, "Desenvolvedor").isEmpty());
+
+	}
+
+	@Test
+	public void testCadastrarCargoVerificaSeObjetoExiste() {
+		ArrayList<Cargo> listaCargo = new ArrayList<Cargo>();
+		CargoService cs = new CargoService();
+		ArrayList<Cargo> recebeTodaAListaDeCargos = cs.cadastrarCargo(listaCargo, 1, "Desenvolvedor");
+		assertEquals(recebeTodaAListaDeCargos.get(0).getIdCargo() == 1,
+				recebeTodaAListaDeCargos.get(0).getNomeCargo() == "Desenvolvedor");
+
+	}
+
+	@Test
+	public void testRemoverCargo() {
+		ArrayList<Cargo> listaCargo = new ArrayList<Cargo>();
+		CargoService cs = new CargoService();
+		cs.cadastrarCargo(listaCargo, 1, "Desenvolvedor");
+		cs.cadastrarCargo(listaCargo, 2, "Tester");
 		
-		System.out.println(listaCargo);
-		
-		Cargo cargo2 = new Cargo(2, "Tester");
-		listaCargo.add(cargo2);
-		System.out.println(listaCargo.get(0));
-		System.out.println(listaCargo.get(1));
-		
-		 CargoService cs = new CargoService();
-		 cs.cadastrarCargo(cargo, listaCargo);
-		 System.out.println(cs.cadastrarCargo(cargo, listaCargo));
-		assertTrue(!listaCargo.isEmpty());
+		assertTrue(cs.removerCargo(2, listaCargo));
 	}
 	
-	 @Test//TODO
-	 public void testRemoverCargo() {
-		 Cargo cargo = new Cargo(1, "desenvolvedor");
-			ArrayList<Cargo> listaCargo = new ArrayList<Cargo>();	
-			listaCargo.add(cargo);
-			
-			System.out.println(listaCargo);
-			
-			Cargo cargo2 = new Cargo(2, "Tester");
-			listaCargo.add(cargo2);
-			System.out.println(listaCargo.get(0));
-			System.out.println(listaCargo.get(1));
-			
-			 CargoService cs = new CargoService();
-			 cs.cadastrarCargo(cargo, listaCargo);
-			 System.out.println(cs.cadastrarCargo(cargo, listaCargo));
-	 }
-	 
+	@Test
+	public void testAlterarCargo() {
+	ArrayList<Cargo> listaCargo = new ArrayList<Cargo>();
+	CargoService cs = new CargoService();
+	cs.cadastrarCargo(listaCargo, 1, "Desenvolvedor");
+	assertTrue(cs.alterarCargo(listaCargo, 1, "testDev"));
+	}
+
 }
