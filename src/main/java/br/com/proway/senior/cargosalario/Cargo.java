@@ -61,6 +61,11 @@ public class Cargo {
 //		this.cargo(this.idCargo, this.nomeCargo);
 //	}
 
+	public Cargo(Integer idCargo, String nomeCargo) {
+		this.idCargo = idCargo;
+		this.nomeCargo = nomeCargo;
+	}
+
 	/**
 	 * 
 	 */
