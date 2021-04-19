@@ -42,16 +42,31 @@ class CargoTest {
 		CargoService cs = new CargoService();
 		cs.cadastrarCargo(listaCargo, 1, "Desenvolvedor");
 		cs.cadastrarCargo(listaCargo, 2, "Tester");
-		
+
 		assertTrue(cs.removerCargo(2, listaCargo));
 	}
-	
+
 	@Test
 	public void testAlterarCargo() {
-	ArrayList<Cargo> listaCargo = new ArrayList<Cargo>();
-	CargoService cs = new CargoService();
-	cs.cadastrarCargo(listaCargo, 1, "Desenvolvedor");
-	assertTrue(cs.alterarCargo(listaCargo, 1, "testDev"));
+		ArrayList<Cargo> listaCargo = new ArrayList<Cargo>();
+		CargoService cs = new CargoService();
+		cs.cadastrarCargo(listaCargo, 1, "Desenvolvedor");
+		assertTrue(cs.alterarCargo(listaCargo, 1, "testDev"));
 	}
 
+	@Test
+	public void testVisualizarTodosOsCargos() {
+		ArrayList<Cargo> listaCargo = new ArrayList<Cargo>();
+		CargoService cs = new CargoService();
+		cs.cadastrarCargo(listaCargo, 1, "Desenvolvedor");
+		cs.cadastrarCargo(listaCargo, 2, "Tester");
+		cs.cadastrarCargo(listaCargo, 3, "Tester2");
+		cs.cadastrarCargo(listaCargo, 4, "Dev2");
+		cs.cadastrarCargo(listaCargo, 5, "Dev3");
+		// TODO
+		System.out.println(cs.visualizarTodosOsCargos(listaCargo));
+		/*
+		 * assertEquals(cs.visualizarTodosOsCargos(listaCargo),
+		 * listaCargo.get(0).getNomeCargo().equals("Desenvolvedor")); }
+		 */}
 }

@@ -303,7 +303,7 @@ public class Cargo {
 	 * Listar Cargos Lista todos os cargos do sistema. Para cada cargo no sistema,
 	 * chama o método visualizarCargo().
 	 */
-	private void listarCargos() {
+	private void listarCargos() { //TODO
 		System.out.println(" Id\tNome do Cargo");
 		for (int i = 0; i < idCargo; i++) {
 			// visualizarCargo(i);
